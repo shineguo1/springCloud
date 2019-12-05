@@ -1,0 +1,11 @@
+server:
+  port: 7000
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defautZone: httpl://localost:7000/eureka
+  server:
+    enable-self-preservation: false

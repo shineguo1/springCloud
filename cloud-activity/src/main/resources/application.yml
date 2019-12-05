@@ -1,0 +1,10 @@
+server:
+  port: 7100
+
+spring:
+  application:
+    name: activity
+eureka:
+  client:
+    service-url:
+      defualtZone: httpl://localost:7000/eureka
