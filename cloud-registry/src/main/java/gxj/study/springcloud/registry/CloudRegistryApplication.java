@@ -2,6 +2,7 @@ package gxj.study.springcloud.registry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 
 /**
@@ -18,6 +19,7 @@ import org.springframework.cloud.client.SpringCloudApplication;
 // @SpringBootApplication
 //  @EnableDiscoveryClient
 //  @EnableCircuitBreaker
+@EnableEurekaServer
 public class CloudRegistryApplication {
 
 	public static void main(String[] args) throws InterruptedException {

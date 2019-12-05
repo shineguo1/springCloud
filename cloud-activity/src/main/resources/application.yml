@@ -7,4 +7,4 @@ spring:
 eureka:
   client:
     service-url:
-      defualtZone: httpl://localost:7000/eureka
+      defualtZone: http://localhost:7000/eureka/

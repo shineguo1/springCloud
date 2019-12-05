@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>gxj.study.springcloud</groupId>
-		<artifactId>springCloud-demo</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>gxj.study.springcloud</groupId>
@@ -15,6 +15,102 @@
 
 
 	<dependencies>
+		<!--spring boot-->
+		<!--支持HTTP调用方式，包含了Spring Boot预定义的一些Web开发的常用依赖包，如: spring-webmvc,Tomcat....-->
+		<!--若不加此依赖，缺少web容器，application启动完会自动关闭（即作为普通的main方法）-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--测试模块-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!--监控模块，实时和定时监控服务的各项状态和可用性-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+		<!--</dependency>-->
+
+		<!--spring cloud-->
+		<!-- @SpringCloudApplication-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter</artifactId>
+			<version>2.2.0.RELEASE</version>
+		</dependency>
+		<!--eureka注册中心依赖 @EnableEurekaServer-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.cloud</groupId>-->
+		<!--<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+		<!--<version>2.2.0.RELEASE</version>-->
+		<!--</dependency>-->
+
+		<!--引入eureka 客户端依赖
+            @EnableDiscoveryClient、@EnableZuulProxy-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka</artifactId>
+			<version>1.4.7.RELEASE</version>
+		</dependency>
+
+		<!--引入ribbon 依赖 ，用来实现客户端的负载均衡，用在client客户端项目-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.cloud</groupId>-->
+		<!--<artifactId>spring-cloud-starter-ribbon</artifactId>-->
+		<!--<version>1.4.7.RELEASE</version>-->
+		<!--</dependency>-->
+
+		<!--引入hystrix 依赖 ，用来实现服务容错保护。当发现请求的服务端崩溃，就采用容错机制  @EnableCircuitBreaker	-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
+		<!--引入feign 依赖，包含ribbon负载均衡，也包含Hystrix服务容错。  @EnableFeignClients-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.cloud</groupId>-->
+		<!--<artifactId>spring-cloud-starter-feign</artifactId>-->
+		<!--<version>1.4.7.RELEASE</version>-->
+		<!--</dependency>-->
+
+		<!--引入zuul依赖 , 它依赖了spring-boot-starter-actuator/spring-boot-starter-hystrix/spring-boot-starter-ribbon-->
+		<!--<dependency>-->
+		<!--<groupId>org.springframework.cloud</groupId>-->
+		<!--<artifactId>spring-cloud-starter-zuul</artifactId>-->
+		<!--<version>1.4.7.RELEASE</version>-->
+		<!--</dependency>-->
+
+		<!--切面-->
+		<!--<dependency>-->
+		<!--<groupId>org.aspectj</groupId>-->
+		<!--<artifactId>aspectjrt</artifactId>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--<groupId>org.aspectj</groupId>-->
+		<!--<artifactId>aspectjweaver</artifactId>-->
+		<!--<version>1.8.5</version>-->
+		<!--</dependency>-->
+
+
+		<!--lombok-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
