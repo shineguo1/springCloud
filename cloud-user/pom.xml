@@ -52,8 +52,8 @@
             @EnableDiscoveryClient、@EnableZuulProxy-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka</artifactId>
-			<version>1.4.7.RELEASE</version>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>2.2.0.RELEASE</version>
 		</dependency>
 
 		<!--引入ribbon 依赖 ，用来实现客户端的负载均衡，用在client客户端项目-->

@@ -1,11 +1,11 @@
 server:
-  port: 8761
+  port: 7000
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     serviceUrl:
-      defautZone: http://localhost:8761/eureka/
+      defautZone: http://localhost:7000/eureka/
   server:
     enable-self-preservation: false

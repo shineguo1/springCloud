@@ -12,9 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginActivityController {
 
-    @PostMapping("fistLogin")
-    public String firstLoginActivity(@RequestBody int userId){
+    @PostMapping("/firstLoginActivity")
+    public String firstLoginActivity(@RequestBody String userId){
         System.out.println("LoginActivityController 处理首次登录用户 发放奖励" + userId);
-        return "发放奖励"+userId;
+        return "[ACTIVITY]发放奖励"+userId;
+    }
+
+    @PostMapping("/firstLoginActivityTimeout")
+    public String firstLoginActivityTimeout(@RequestBody String userId) throws Exception {
+        Thread.sleep(5000);
+//        if(true){
+//            throw new Exception("[Activity] 手动抛出Exception");
+//        }
+        System.out.println("LoginActivityController 处理首次登录用户 发放奖励" + userId);
+        return "[ACTIVITY]发放奖励"+userId;
     }
 }

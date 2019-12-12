@@ -4,7 +4,18 @@ server:
 spring:
   application:
     name: activity
+  main:
+    allow-bean-definition-overriding: true
+
 eureka:
   client:
     service-url:
-      defualtZone: http://localhost:7000/eureka/
+#      default-zone: http://localhost:7000/eureka/
+      defaultZone: http://localhost:7000/eureka/
+#      阿猫阿狗: hahaha
+#    错误的属性: no exsit
+  instance:
+#    instance-id: ${spring.cloud.client.ip-address}:21102  # 修改显示的微服务名为：IP:端口
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 15 # 发呆时间，即服务续约到期时间（缺省为90s）
+    preferIpAddress: true                    # 设置微服务调用地址为IP优先（缺省为false）
