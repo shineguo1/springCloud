@@ -15,6 +15,14 @@
 
 
     <dependencies>
+        <!--内部模块-->
+        <dependency>
+            <groupId>gxj.study.springcloud</groupId>
+            <artifactId>cloud-activity-facade</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+
         <!--spring boot-->
         <!--支持HTTP调用方式，包含了Spring Boot预定义的一些Web开发的常用依赖包，如: spring-webmvc,Tomcat....-->
         <!--若不加此依赖，缺少web容器，application启动完会自动关闭（即作为普通的main方法）-->

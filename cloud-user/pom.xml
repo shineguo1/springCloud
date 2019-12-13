@@ -15,6 +15,12 @@
 
 
 	<dependencies>
+		<!--activity feign facade-->
+		<dependency>
+			<groupId>gxj.study.springcloud</groupId>
+			<artifactId>cloud-activity-facade</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!--spring boot-->
 		<!--支持HTTP调用方式，包含了Spring Boot预定义的一些Web开发的常用依赖包，如: spring-webmvc,Tomcat....-->
 		<!--若不加此依赖，缺少web容器，application启动完会自动关闭（即作为普通的main方法）-->
@@ -29,10 +35,11 @@
 			<scope>test</scope>
 		</dependency>
 		<!--监控模块，实时和定时监控服务的各项状态和可用性-->
-		<!--<dependency>-->
-		<!--<groupId>org.springframework.boot</groupId>-->
-		<!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<!--<version>2.0.1.RELEASE</version>-->
+		</dependency>
 
 		<!--spring cloud-->
 		<!-- @SpringCloudApplication-->
@@ -47,6 +54,13 @@
 		<!--<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
 		<!--<version>2.2.0.RELEASE</version>-->
 		<!--</dependency>-->
+
+		<!--feign赖-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>2.2.0.RELEASE</version>
+		</dependency>
 
 		<!--引入eureka 客户端依赖
             @EnableDiscoveryClient、@EnableZuulProxy-->

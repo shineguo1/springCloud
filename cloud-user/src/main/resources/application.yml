@@ -8,3 +8,47 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:7000/eureka/
+
+##actuator端口
+#management.server.port=9001
+##修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+#management.endpoints.web.base-path=/monitor
+##开放所有页面节点  默认只开启了health、info两个节点
+#management.endpoints.web.exposure.include=["*"]?
+##显示健康具体信息  默认不会显示详细信息
+#management.endpoint.health.show-details=always
+
+management:
+  security:
+    #禁止权限
+    enabled: false
+  endpoint:
+    health:
+      #/actuator/details能看到详细信息
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        #可以看到/actuator/mappings
+        include: "*"
+
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+#        timeout:
+#          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+#    有点问题，找不到对应的服务
+#    ActivityFeign:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 3
+

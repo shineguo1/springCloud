@@ -24,21 +24,22 @@ public class RegistrationController {
 
     //等价于@RequestMapping 请求方法=post
     @PostMapping("/register")
-    public String userRegistration(@RequestBody User user){
-        System.out.println("用户注册 成功"+user.getName());
+    public String userRegistration(@RequestBody User user) {
+        System.out.println("用户注册 成功" + user.getName());
         return "[USER] 用户注册成功 " + activityService.firstLogin(user.getId());
     }
 
 
     /**
      * 请求超时：等待2秒，然后超时，Hystrix抛出异常并捕获
+     *
      * @param user
      * @return
      */
     @PostMapping("/registerTimeout")
-    public String userRegistrationTimeout(@RequestBody User user){
-        System.out.println("用户注册 成功"+user.getName());
-        String ret="";
+    public String userRegistrationTimeout(@RequestBody User user) {
+        System.out.println("用户注册 成功" + user.getName());
+        String ret = "";
         try {
             ret = "[USER] 用户注册成功 " + activityService.firstLoginTimeout(user.getId());
             return ret;
@@ -50,13 +51,14 @@ public class RegistrationController {
 
     /**
      * 请求超时：2秒后超时，Hystrix回调函数处理
+     *
      * @param user
      * @return
      */
     @PostMapping("/registerTimeoutFallback")
-    public String userRegistrationTimeoutFallback(@RequestBody User user){
-        System.out.println("用户注册 成功"+user.getName());
-        String ret="";
+    public String userRegistrationTimeoutFallback(@RequestBody User user) {
+        System.out.println("用户注册 成功" + user.getName());
+        String ret = "";
         try {
             ret = "[USER] 用户注册成功 " + activityService.firstLoginTimeoutFallBack(user.getId());
             return ret;
@@ -65,20 +67,21 @@ public class RegistrationController {
             //如果接受到异常，是fallbackMethod抛出的异常
             System.out.println("用户注册 请求超时");
             return "[USER] TIME OUT EXCEPTION";
-        }catch(Exception e){
+        } catch (Exception e) {
             return "[USER] EXCEPTION";
         }
     }
 
     /**
      * 手动抛出异常，Hystrix回调函数处理
+     *
      * @param user
      * @return
      */
     @PostMapping("/registerExceptionFallback")
-    public String userRegistrationExceptionFallback(@RequestBody User user){
-        System.out.println("用户注册 成功"+user.getName());
-        String ret="";
+    public String userRegistrationExceptionFallback(@RequestBody User user) {
+        System.out.println("用户注册 成功" + user.getName());
+        String ret = "";
         try {
             ret = "[USER] 用户注册成功 " + activityService.firstLoginExceptionFallBack(user.getId());
             return ret;
@@ -87,8 +90,56 @@ public class RegistrationController {
             //如果接受到异常，是fallbackMethod抛出的异常
             System.out.println("用户注册 请求超时");
             return "[USER] RUNTIME EXCEPTION";
-        }catch(Exception e){
+        } catch (Exception e) {
             return "[USER] EXCEPTION";
         }
     }
+
+
+    /**
+     * Hystrix的跳闸机制
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("/registerCircuitBreaker")
+    public String userRegistrationCircuitBreaker(@RequestBody User user) {
+        System.out.println("用户注册 成功" + user.getName());
+        String ret = "";
+        try {
+            ret = "[USER] 用户注册成功 " + activityService.firstLoginCircuitBreaker(user.getId());
+            return ret;
+        } catch (HystrixRuntimeException e) {
+            //不会接收到firstLoginTimeoutFallBack异常
+            //如果接受到异常，是fallbackMethod抛出的异常
+            System.out.println("用户注册 请求超时");
+            return "[USER] RUNTIME EXCEPTION";
+        } catch (Exception e) {
+            return "[USER] EXCEPTION";
+        }
+    }
+
+    /**
+     * 定制Hystrix处理的线程池
+     *
+     * @param user
+     * @return
+     */
+    @PostMapping("/registerSelfThreadPool")
+    public String userRegistrationSelfThreadPool(@RequestBody User user) {
+        System.out.println("用户注册 成功" + user.getName());
+        String ret = "";
+        try {
+            ret = "[USER] 用户注册成功 " + activityService.firstLoginSelfThreadPool(user.getId());
+            return ret;
+        } catch (HystrixRuntimeException e) {
+            //不会接收到firstLoginTimeoutFallBack异常
+            //如果接受到异常，是fallbackMethod抛出的异常
+            System.out.println("用户注册 请求超时");
+            return "[USER] RUNTIME EXCEPTION";
+        } catch (Exception e) {
+            return "[USER] EXCEPTION";
+        }
+    }
+
 }
